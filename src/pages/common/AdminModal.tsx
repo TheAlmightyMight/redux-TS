@@ -25,7 +25,12 @@ const Btn = {
   height: "25px",
 };
 
-function AdminModal({ shown, setShowAdminModal }) {
+interface Props {
+  shown: boolean;
+  setShowAdminModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function AdminModal({ shown, setShowAdminModal }: Props) {
   const dispatch = useAppDispatch();
   const name = useRef() as React.MutableRefObject<HTMLInputElement>;
   const stock = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -83,7 +88,7 @@ function AdminModal({ shown, setShowAdminModal }) {
         <button style={Btn} onClick={(e) => handler(e)}>
           Создать
         </button>
-        <button style={Btn} onClick={() => setShowAdminModal()}>
+        <button style={Btn} onClick={() => void 0}>
           Закрыть
         </button>
       </div>

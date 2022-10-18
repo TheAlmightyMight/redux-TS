@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../types/redux-hooks";
 import { addCartItemAsync } from "../../redux/actionCreators/CartActions";
 
 //types
 import { ProductItem } from "../../types/ProductItem";
-import { RootState } from "../../redux/store";
 
 function Product(props: ProductItem) {
   const { id, ...rest } = props;
-  const items = useSelector((state: RootState) => state.cartReducer.items);
+  const items = useAppSelector((state) => state.cartReducer.items);
   const [isAdded, setIsAdded] = useState(false);
 
   //? fix
@@ -26,8 +25,9 @@ function Product(props: ProductItem) {
       return false;
     });
   }, [items, props.title]);
-  const dispatch = useDispatch();
-  const logged = useSelector((state) => state.authReducer.isLogged);
+
+  const dispatch = useAppDispatch();
+  const logged = useAppSelector((state) => state.authReducer.isLogged);
 
   return (
     <div>
@@ -42,6 +42,7 @@ function Product(props: ProductItem) {
               <button>Товар уже в корзине</button>
             ) : (
               <button
+                //change action typings
                 onClick={() =>
                   dispatch(addCartItemAsync({ ...rest, quantity: 1 }))
                 }

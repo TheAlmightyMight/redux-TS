@@ -7,4 +7,4 @@ interface ProductItem {
   stock: number;
 }
 
-export { ProductItem };
+export type { ProductItem };

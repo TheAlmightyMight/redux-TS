@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+
 import { useAppDispatch, useAppSelector } from "../../types/redux-hooks";
 import { getProductsAsync } from "../../redux/actionCreators/ProductsActions";
 
 //components
-import Product from "./Product.tsx";
-import AdminProduct from "./AdminProduct.tsx";
+import Product from "./Product";
+import AdminProduct from "./AdminProduct";
 
 //types
 import { ProductItem } from "../../types/ProductItem";
@@ -15,19 +15,19 @@ function Home() {
   const [error, setError] = useState(false);
   const [makeRequest, setMakeRequest] = useState(false);
   const loading = useAppSelector((state) => state.productReducer.loading);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     try {
       dispatch(getProductsAsync());
     } catch (err) {
       setError(true);
-      console.error(err.message);
+      console.error(err);
     }
   }, [makeRequest]);
-  const products = useSelector(
+  const products = useAppSelector(
     (state: RootState) => state.productReducer.products
   );
-  const admin = useSelector((state: RootState) => state.authReducer.isAdmin);
+  const admin = useAppSelector((state: RootState) => state.authReducer.isAdmin);
   return (
     <main
       style={{

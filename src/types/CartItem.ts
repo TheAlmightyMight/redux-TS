@@ -4,4 +4,4 @@ interface CartItem extends ProductItem {
   quantity: number;
 }
 
-export { CartItem };
+export type { CartItem };

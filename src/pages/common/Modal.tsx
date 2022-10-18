@@ -35,13 +35,13 @@ function Modal() {
   const [password, setPassword] = useState("");
   const error = useAppSelector((state) => state.authReducer.error);
   const dispatch = useAppDispatch();
-  const loginHandler = (e) => {
+  const loginHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
-  const passwordHandler = (e) => {
+  const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-  const clickHandler = (e) => {
+  const clickHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     dispatch(loginAsync({ login: name, password: password }));
   };
@@ -54,10 +54,7 @@ function Modal() {
         </div>
       ) : (
         <>
-          <button
-            style={Btn as React.CSSProperties}
-            onClick={() => dispatch(setModalVisibility(false))}
-          >
+          <button style={Btn as React.CSSProperties} onClick={() => void 0}>
             X
           </button>
           <form
@@ -88,7 +85,6 @@ function Modal() {
                 onClick={(e) =>
                   (() => {
                     e.preventDefault();
-                    dispatch(setModalVisibility(false));
                   })()
                 }
               >

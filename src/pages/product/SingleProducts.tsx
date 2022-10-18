@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../types/redux-hooks";
 //@ts-ignore
 import styles from "./SingleProducts.module.css";
 import { addCartItemAsync } from "../../redux/actionCreators/CartActions";
@@ -8,15 +8,18 @@ import { addCartItemAsync } from "../../redux/actionCreators/CartActions";
 //types
 import { ProductItem } from "../../types/ProductItem";
 
+//TODO:
+// make so that if the item is already in the cart the user knows it
+
 function SingleProducts() {
   const { id } = useParams();
-  const dispatch = useDispatch();
-  const item = useSelector((state) =>
-    state.productReducer.products.find(
-      (el: ProductItem<"dummyimage.com/500x500/000/fff.png">) => el.id === id
-    )
-  );
-  const logged = useSelector((state) => state.authReducer.isLogged);
+  const dispatch = useAppDispatch();
+  const item = useAppSelector((state) =>
+    state.productReducer.products.find((el: ProductItem) => el.id === id)
+  ) as ProductItem;
+  const logged = useAppSelector((state) => state.authReducer.isLogged);
+  const { id: _, ...rest } = item;
+  const itemToPassAsArgument = { ...rest, quantity: 1 };
   return (
     <div className={styles.container}>
       <article className={styles.img}>
@@ -24,7 +27,7 @@ function SingleProducts() {
         <figure>
           <img
             alt={`Товар ${item.id} картинка отвалилась`}
-            src={item.thumbnail}
+            src={item.picture}
           />
           <figcaption>Описание:{item.description}</figcaption>
         </figure>
@@ -38,7 +41,7 @@ function SingleProducts() {
               borderRadius: "15px",
               cursor: "pointer",
             }}
-            onClick={() => dispatch(addCartItemAsync(item))}
+            onClick={() => dispatch(addCartItemAsync(itemToPassAsArgument))}
           >
             Add
           </button>

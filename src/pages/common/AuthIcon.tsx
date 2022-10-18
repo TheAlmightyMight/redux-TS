@@ -1,11 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
 const AuthIcon: React.FC = () => {
-  const dispatch = useDispatch();
   return (
     <svg
-      onClick={() => dispatch(setModalVisibility(true))}
+      onClick={() => void 0}
       style={{ cursor: "pointer" }}
       width="50px"
       viewBox="0 0 24 24"

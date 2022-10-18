@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../types/redux-hooks";
 
 //actions
 import {
@@ -7,8 +7,11 @@ import {
   deleteProductAsync,
 } from "../../redux/actionCreators/ProductsActions";
 
-function AdminProduct({ description, title, stock, id, ...rest }) {
-  const dispatch = useDispatch();
+import { ProductItem } from "../../types/ProductItem";
+
+function AdminProduct(props: ProductItem) {
+  const { description, title, stock, id, ...rest } = props;
+  const dispatch = useAppDispatch();
 
   const [name, setName] = useState(title);
   const [text, setText] = useState(description);
@@ -23,7 +26,7 @@ function AdminProduct({ description, title, stock, id, ...rest }) {
     setName(title);
     nameInput.current.value = title;
     setText(description);
-    stockInput.current.value = stock;
+    stockInput.current.value = String(stock);
     setAmount(stock);
     descriptionTextArea.current.value = description;
   };
@@ -31,6 +34,7 @@ function AdminProduct({ description, title, stock, id, ...rest }) {
   const updateProduct = () => {
     const item = {
       ...rest,
+      id: id,
       title: name,
       description: text,
       stock: amount,
@@ -51,7 +55,7 @@ function AdminProduct({ description, title, stock, id, ...rest }) {
         name="quantity"
         ref={stockInput}
         onFocus={() => void 0}
-        onChange={(e) => setAmount(e.target.value)}
+        onChange={(e) => setAmount(Number(e.target.value))}
         value={amount}
       />
       <textarea

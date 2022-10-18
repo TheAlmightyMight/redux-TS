@@ -81,7 +81,7 @@ const deleteCartItemsAllAsync = () => (dispatch: Dispatch<CartActionType>) => {
 };
 
 const addCartItemAsync =
-  (data: CartItem) =>
+  (data: Omit<CartItem, "id">) =>
   (dispatch: Dispatch<CartActionType>, getState: () => RootState) => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", "sdVP1i2MoACkV6vm0cuF");
@@ -97,7 +97,8 @@ const addCartItemAsync =
       if (!req.ok) {
         dispatch(cartItemsError());
       } else {
-        dispatch(addCartItem(data));
+        // /? fix the absence of id
+        dispatch(addCartItem(data as CartItem));
       }
     });
   };
