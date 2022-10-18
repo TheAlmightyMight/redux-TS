@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table {
+  margin-top: 20px;
+  border: 1px solid;
+  text-align: center;
+}
+
+.tableHeader {
+  border-bottom: 1px solid;
+}
