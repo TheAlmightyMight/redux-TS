@@ -23,7 +23,7 @@ const getCartItemsAsync = () => (dispatch: Dispatch<CartActionType>) => {
   const myHeaders = new Headers();
   myHeaders.append("Authorization", "sdVP1i2MoACkV6vm0cuF");
   myHeaders.append("Content-Type", "application/json");
-  fetch(`https://dirndl-fish.cyclic.app/cart`, {
+  fetch(`https://panicky-swimsuit-tuna.cyclic.app/cart`, {
     method: "GET",
     headers: myHeaders,
   }).then((req) => {
@@ -50,7 +50,7 @@ const deleteCartItemAsync =
     };
 
     fetch(
-      `https://dirndl-fish.cyclic.app/cart/sdVP1i2MoACkV6vm0cuF/${id}`,
+      `https://panicky-swimsuit-tuna.cyclic.app/cart/sdVP1i2MoACkV6vm0cuF/${id}`,
       requestOptions
     ).then((req) => {
       if (!req.ok) {
@@ -71,13 +71,15 @@ const deleteCartItemsAllAsync = () => (dispatch: Dispatch<CartActionType>) => {
     headers: myHeaders,
   };
 
-  fetch(`https://dirndl-fish.cyclic.app/cart/all`, options).then((req) => {
-    if (!req.ok) {
-      dispatch(cartItemsError());
-    } else {
-      dispatch(deleteCartItemsAll());
+  fetch(`https://panicky-swimsuit-tuna.cyclic.app/cart/all`, options).then(
+    (req) => {
+      if (!req.ok) {
+        dispatch(cartItemsError());
+      } else {
+        dispatch(deleteCartItemsAll());
+      }
     }
-  });
+  );
 };
 
 const addCartItemAsync =
@@ -93,14 +95,16 @@ const addCartItemAsync =
       body: JSON.stringify(data),
     };
 
-    fetch(`https://dirndl-fish.cyclic.app/cart`, options).then((req) => {
-      if (!req.ok) {
-        dispatch(cartItemsError());
-      } else {
-        // /? fix the absence of id
-        dispatch(addCartItem(data as CartItem));
+    fetch(`https://panicky-swimsuit-tuna.cyclic.app/cart`, options).then(
+      (req) => {
+        if (!req.ok) {
+          dispatch(cartItemsError());
+        } else {
+          // /? fix the absence of id
+          dispatch(addCartItem(data as CartItem));
+        }
       }
-    });
+    );
   };
 
 const updateCartItemAsync =
@@ -118,7 +122,7 @@ const updateCartItemAsync =
     };
 
     fetch(
-      `https://dirndl-fish.cyclic.app/cart/sdVP1i2MoACkV6vm0cuF/${data.id}`,
+      `https://panicky-swimsuit-tuna.cyclic.app/cart/sdVP1i2MoACkV6vm0cuF/${data.id}`,
       options
     ).then((req) => {
       if (!req.ok) {

@@ -1,4 +1,4 @@
-import { ActionTypes, AuthAction } from "../actionCreators/AuthActions";
+import { ActionTypes, AuthAction } from "../AuthActions";
 
 type InitialState = {
   isLogged: boolean;

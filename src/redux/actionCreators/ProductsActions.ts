@@ -18,7 +18,7 @@ const getProductsAsync = () => (dispatch: Dispatch<ProductAction>) => {
     headers: myHeaders,
   };
 
-  fetch(`https://dirndl-fish.cyclic.app/products`, options).then((req) => {
+  fetch(`http://localhost:5000/products`, options).then((req) => {
     if (!req.ok) {
       dispatch(productsLoading(false));
       dispatch(productsError());
@@ -46,7 +46,7 @@ const updateProductAsync =
       redirect: "follow",
     };
 
-    fetch(`https://dirndl-fish.cyclic.app/products/${id}`, requestOptions)
+    fetch(`http://localhost:5000/products/${id}`, requestOptions)
       .then((response) => {
         if (!response.ok) {
           dispatch(productsError());
@@ -67,15 +67,13 @@ const deleteProductAsync =
       }),
     };
 
-    fetch(`https://dirndl-fish.cyclic.app/products/${id}`, options).then(
-      (req) => {
-        if (!req.ok) {
-          dispatch(productsError());
-        } else {
-          dispatch(deleteProduct(id));
-        }
+    fetch(`http://localhost:5000/products/${id}`, options).then((req) => {
+      if (!req.ok) {
+        dispatch(productsError());
+      } else {
+        dispatch(deleteProduct(id));
       }
-    );
+    });
   };
 
 const addProductAsync =
@@ -90,7 +88,7 @@ const addProductAsync =
       body: JSON.stringify(data),
     };
 
-    fetch(`https://dirndl-fish.cyclic.app/products`, options).then((req) => {
+    fetch(`http://localhost:5000/products`, options).then((req) => {
       if (!req.ok) {
         dispatch(productsError());
       } else {

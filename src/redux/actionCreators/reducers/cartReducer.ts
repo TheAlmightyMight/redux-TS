@@ -1,5 +1,5 @@
-import { CartAction, ActionTypes } from "../actionCreators/CartActions";
-import { CartItem } from "../../types/CartItem";
+import { CartAction, ActionTypes } from "../CartActions";
+import { CartItem } from "../../../types/CartItem";
 
 type InitialState = {
   items: CartItem[];

@@ -1,5 +1,5 @@
-import { ProductItem } from "../../types/ProductItem";
-import { ActionTypes, ProductAction } from "../actionCreators/ProductsActions";
+import { ProductItem } from "../../../types/ProductItem";
+import { ActionTypes, ProductAction } from "../ProductsActions";
 
 type InitialState = {
   products: Array<ProductItem>;
