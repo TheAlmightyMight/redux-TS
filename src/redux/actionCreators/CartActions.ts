@@ -1,5 +1,5 @@
 import { CartItem } from "../../types/CartItem";
-import { Dispatch } from "react";
+import { Dispatch } from "redux";
 import { RootState } from "../store";
 
 export type CartActionType =

@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import { Dispatch } from "redux";
 
 type AuthAction =
   | ReturnType<typeof authError>

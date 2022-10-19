@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../types/redux-hooks";
 import { addCartItemAsync } from "../../redux/actionCreators/CartActions";
 
+//@ts-ignore
+import styles from "./Home.module.css";
+
 //types
 import { ProductItem } from "../../types/ProductItem";
 
@@ -30,7 +33,7 @@ function Product(props: ProductItem) {
   const logged = useAppSelector((state) => state.authReducer.isLogged);
 
   return (
-    <div>
+    <div className={styles.container}>
       <li>
         <Link to={`/products/${props.id}`}>
           <h3>{props.title}</h3>
@@ -55,6 +58,7 @@ function Product(props: ProductItem) {
           <button>Чтобы добавить залогиньтесь</button>
         )}
       </li>
+      <div></div>
     </div>
   );
 }
