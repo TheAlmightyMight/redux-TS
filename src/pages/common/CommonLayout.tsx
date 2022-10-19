@@ -29,6 +29,7 @@ function CommonLayout() {
   const logged = useAppSelector((state) => state.authReducer.isLogged);
   const admin = useAppSelector((state) => state.authReducer.isAdmin);
   const price = useAppSelector((state) =>
+    //useMemo /?
     state.cartReducer.items
       .map((el) => Number(el.price) * Number(el.quantity))
       .reduce((a: number, b: number) => a + b, 0)

@@ -1,4 +1,4 @@
-import { ActionTypes, AuthAction } from "../AuthActions";
+import { AuthActionTypes, AuthAction } from "../actionCreators/AuthActions";
 
 type InitialState = {
   isLogged: boolean;
@@ -17,25 +17,26 @@ export const authReducer = (
   action: AuthAction
 ): typeof initialState => {
   switch (action.type) {
-    case ActionTypes.ERROR: {
-      return {
-        ...state,
-        error: action.payload,
-      };
-    }
-    case ActionTypes.LOGIN: {
+    case AuthActionTypes.LOGIN: {
       return {
         ...state,
         isLogged: true,
         isAdmin: action.payload,
       };
     }
-    case ActionTypes.LOGOUT:
+    case AuthActionTypes.LOGOUT: {
       return {
         ...state,
         isLogged: false,
         isAdmin: false,
       };
+    }
+    case AuthActionTypes.ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
     default:
       return state;
   }

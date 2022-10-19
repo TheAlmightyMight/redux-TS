@@ -135,105 +135,105 @@ const updateCartItemAsync =
     });
   };
 
-enum ActionTypes {
-  "GET_CART_ITEMS",
-  "ADD_CART_ITEM",
-  "DELETE_CART_ITEM",
-  "DELETE_CART_ITEMS_ALL",
-  "INCREASE_CART_ITEM_AMOUNT",
-  "DECREASE_CART_ITEM_AMOUNT",
-  "CART_ERROR",
-  "LOADING",
+enum CartActionTypes {
+  "GET_CART_ITEMS" = "GET_CART_ITEMS",
+  "ADD_CART_ITEM" = "ADD_CART_ITEM",
+  "DELETE_CART_ITEM" = "DELETE_CART_ITEM",
+  "DELETE_CART_ITEMS_ALL" = "DELETE_CART_ITEMS_ALL",
+  "INCREASE_CART_ITEM_AMOUNT" = "INCREASE_CART_ITEM_AMOUNT",
+  "DECREASE_CART_ITEM_AMOUNT" = "DECREASE_CART_ITEM_AMOUNT",
+  "CART_ERROR" = "CART_ERROR",
+  "LOADING" = "LOADING",
 }
 
 interface CartItemsErrorAction {
-  type: ActionTypes.CART_ERROR;
+  type: CartActionTypes.CART_ERROR;
 }
 
 function cartItemsError(): CartItemsErrorAction {
   return {
-    type: ActionTypes.CART_ERROR,
+    type: CartActionTypes.CART_ERROR,
   };
 }
 
 interface CartItemsLoadingAction {
-  type: ActionTypes.LOADING;
+  type: CartActionTypes.LOADING;
   payload: boolean;
 }
 
 function cartItemsLoading(flag: boolean): CartItemsLoadingAction {
   return {
-    type: ActionTypes.LOADING,
+    type: CartActionTypes.LOADING,
     payload: flag,
   };
 }
 
 interface GetCartItemsAction {
-  type: ActionTypes.GET_CART_ITEMS;
+  type: CartActionTypes.GET_CART_ITEMS;
   payload: CartItem[];
 }
 
 function getCartItems(items: Array<CartItem>): GetCartItemsAction {
   return {
-    type: ActionTypes.GET_CART_ITEMS,
+    type: CartActionTypes.GET_CART_ITEMS,
     payload: items,
   };
 }
 
 interface DeleteCartItemsAllAction {
-  type: ActionTypes.DELETE_CART_ITEMS_ALL;
+  type: CartActionTypes.DELETE_CART_ITEMS_ALL;
 }
 
 function deleteCartItemsAll(): DeleteCartItemsAllAction {
   return {
-    type: ActionTypes.DELETE_CART_ITEMS_ALL,
+    type: CartActionTypes.DELETE_CART_ITEMS_ALL,
   };
 }
 
 interface DeleteCartItemAction {
-  type: ActionTypes.DELETE_CART_ITEM;
+  type: CartActionTypes.DELETE_CART_ITEM;
   payload: string;
 }
 
 function deleteCartItem(id: string): DeleteCartItemAction {
   return {
-    type: ActionTypes.DELETE_CART_ITEM,
+    type: CartActionTypes.DELETE_CART_ITEM,
     payload: id,
   };
 }
 
 interface AddCartItemAction {
-  type: ActionTypes.ADD_CART_ITEM;
+  type: CartActionTypes.ADD_CART_ITEM;
   payload: CartItem;
 }
 
 function addCartItem(elem: CartItem): AddCartItemAction {
   return {
-    type: ActionTypes.ADD_CART_ITEM,
+    type: CartActionTypes.ADD_CART_ITEM,
     payload: elem,
   };
 }
 
 interface IncreaseCartItemAmountAction {
-  type: ActionTypes.INCREASE_CART_ITEM_AMOUNT;
+  type: CartActionTypes.INCREASE_CART_ITEM_AMOUNT;
   payload: string;
 }
 
 function increaseCartItemAmount(id: string): IncreaseCartItemAmountAction {
   return {
-    type: ActionTypes.INCREASE_CART_ITEM_AMOUNT,
+    type: CartActionTypes.INCREASE_CART_ITEM_AMOUNT,
     payload: id,
   };
 }
 
 interface DecreaseCartItemAmountAction {
-  type: ActionTypes.DECREASE_CART_ITEM_AMOUNT;
+  type: CartActionTypes.DECREASE_CART_ITEM_AMOUNT;
   payload: string;
 }
 
 function decreaseCartItemAmount(id: string): DecreaseCartItemAmountAction {
   return {
-    type: ActionTypes.DECREASE_CART_ITEM_AMOUNT,
+    type: CartActionTypes.DECREASE_CART_ITEM_AMOUNT,
     payload: id,
   };
 }
@@ -254,6 +254,6 @@ export {
   addCartItemAsync,
   updateCartItemAsync,
   deleteCartItemsAllAsync,
-  ActionTypes,
+  CartActionTypes,
 };
 export type { CartAction };

@@ -11,43 +11,43 @@ type Options<T extends Request> = {
 
 type RequestOptions = Partial<Options<Request>>;
 
-enum ActionTypes {
-  "ERROR",
-  "LOGIN",
-  "LOGOUT",
+enum AuthActionTypes {
+  "ERROR" = "ERROR",
+  "LOGIN" = "LOGIN",
+  "LOGOUT" = "LOGOUT",
 }
 
 interface ErrorAction {
-  type: ActionTypes.ERROR;
+  type: AuthActionTypes.ERROR;
   payload: boolean;
 }
 
 function authError(flag: boolean): ErrorAction {
   return {
-    type: ActionTypes.ERROR,
+    type: AuthActionTypes.ERROR,
     payload: flag,
   };
 }
 
 interface LoginAction {
-  type: ActionTypes.LOGIN;
+  type: AuthActionTypes.LOGIN;
   payload: boolean;
 }
 
 function login(flag: boolean): LoginAction {
   return {
-    type: ActionTypes.LOGIN,
+    type: AuthActionTypes.LOGIN,
     payload: flag,
   };
 }
 
 interface LogoutAction {
-  type: ActionTypes.LOGOUT;
+  type: AuthActionTypes.LOGOUT;
 }
 
 function logout(): LogoutAction {
   return {
-    type: ActionTypes.LOGOUT,
+    type: AuthActionTypes.LOGOUT,
   };
 }
 
@@ -84,5 +84,5 @@ const loginAsync =
       });
   };
 
-export { logout, login, loginAsync, authError, ActionTypes };
+export { logout, login, loginAsync, authError, AuthActionTypes };
 export type { AuthAction };

@@ -107,47 +107,47 @@ const addProductAsync =
     );
   };
 
-enum ActionTypes {
-  "GET_PRODUCTS",
-  "DELETE_PRODUCT",
-  "ADD_PRODUCT",
-  "UPDATE_PRODUCT",
-  "PRODUCTS_ERROR",
-  "PRODUCTS_LOADING",
+enum ProductActionTypes {
+  "GET_PRODUCTS" = "GET_PRODUCTS",
+  "DELETE_PRODUCT" = "DELETE_PRODUCT",
+  "ADD_PRODUCT" = "ADD_PRODUCT",
+  "UPDATE_PRODUCT" = "UPDATE_PRODUCT",
+  "PRODUCTS_ERROR" = "PRODUCTS_ERROR",
+  "PRODUCTS_LOADING" = "PRODUCTS_LOADING",
 }
 
 interface GetProductsAction {
-  type: ActionTypes.GET_PRODUCTS;
+  type: ProductActionTypes.GET_PRODUCTS;
   payload: Array<ProductItem>;
 }
 
 function getProducts(products: ProductItem[]): GetProductsAction {
   return {
-    type: ActionTypes.GET_PRODUCTS,
+    type: ProductActionTypes.GET_PRODUCTS,
     payload: products,
   };
 }
 
 interface DeleteProductAction {
-  type: ActionTypes.DELETE_PRODUCT;
+  type: ProductActionTypes.DELETE_PRODUCT;
   payload: string;
 }
 
 function deleteProduct(id: string): DeleteProductAction {
   return {
-    type: ActionTypes.DELETE_PRODUCT,
+    type: ProductActionTypes.DELETE_PRODUCT,
     payload: id,
   };
 }
 
 interface AddProductAction {
-  type: ActionTypes.ADD_PRODUCT;
+  type: ProductActionTypes.ADD_PRODUCT;
   payload: ProductItem;
 }
 
 function addProduct(data: ProductItem): AddProductAction {
   return {
-    type: ActionTypes.ADD_PRODUCT,
+    type: ProductActionTypes.ADD_PRODUCT,
     payload: data,
   };
 }
@@ -158,13 +158,13 @@ interface UpdateProductActionPayload {
 }
 
 interface UpdateProductAction {
-  type: ActionTypes.UPDATE_PRODUCT;
+  type: ProductActionTypes.UPDATE_PRODUCT;
   payload: UpdateProductActionPayload;
 }
 
 function updateProduct(id: string, data: ProductItem): UpdateProductAction {
   return {
-    type: ActionTypes.UPDATE_PRODUCT,
+    type: ProductActionTypes.UPDATE_PRODUCT,
     payload: {
       data: data,
       id: id,
@@ -173,23 +173,23 @@ function updateProduct(id: string, data: ProductItem): UpdateProductAction {
 }
 
 interface ErrorAction {
-  type: ActionTypes.PRODUCTS_ERROR;
+  type: ProductActionTypes.PRODUCTS_ERROR;
 }
 
 function productsError(): ErrorAction {
   return {
-    type: ActionTypes.PRODUCTS_ERROR,
+    type: ProductActionTypes.PRODUCTS_ERROR,
   };
 }
 
 interface LoadingAction {
-  type: ActionTypes.PRODUCTS_LOADING;
+  type: ProductActionTypes.PRODUCTS_LOADING;
   payload: boolean;
 }
 
 function productsLoading(flag: boolean): LoadingAction {
   return {
-    type: ActionTypes.PRODUCTS_LOADING,
+    type: ProductActionTypes.PRODUCTS_LOADING,
     payload: flag,
   };
 }
@@ -208,6 +208,6 @@ export {
   updateProductAsync,
   deleteProductAsync,
   addProductAsync,
-  ActionTypes,
+  ProductActionTypes,
 };
 export type { ProductAction };
