@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { useAppDispatch, useAppSelector } from "../../types/redux-hooks";
 import { getProductsAsync } from "../../redux/actionCreators/ProductsActions";
 

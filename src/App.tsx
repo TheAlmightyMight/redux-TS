@@ -7,7 +7,7 @@ import SingleProducts from "./pages/product/SingleProducts";
 import Cart from "./pages/cart/Cart";
 
 import CommonLayout from "./pages/common/CommonLayout";
-import ErrorPage from "./pages/ErrorPage";
+import ErrorPage from "./pages/Error/ErrorPage";
 
 function App() {
   return (
