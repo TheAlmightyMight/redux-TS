@@ -30,7 +30,11 @@ const Btn = {
   right: "-300px",
 };
 
-function Modal() {
+interface Props {
+  setShowAuthModal: React.Dispatch<boolean>;
+}
+
+const Modal: React.FC<Props> = ({ setShowAuthModal }) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const error = useAppSelector((state) => state.authReducer.error);
@@ -54,7 +58,10 @@ function Modal() {
         </div>
       ) : (
         <>
-          <button style={Btn as React.CSSProperties} onClick={() => void 0}>
+          <button
+            style={Btn as React.CSSProperties}
+            onClick={() => setShowAuthModal(false)}
+          >
             X
           </button>
           <form
@@ -85,6 +92,7 @@ function Modal() {
                 onClick={(e) =>
                   (() => {
                     e.preventDefault();
+                    setShowAuthModal(false);
                   })()
                 }
               >
@@ -96,6 +104,6 @@ function Modal() {
       )}
     </dialog>
   );
-}
+};
 
 export default Modal;

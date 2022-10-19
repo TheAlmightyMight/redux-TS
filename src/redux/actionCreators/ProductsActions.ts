@@ -18,15 +18,17 @@ const getProductsAsync = () => (dispatch: Dispatch<ProductAction>) => {
     headers: myHeaders,
   };
 
-  fetch(`http://localhost:5000/products`, options).then((req) => {
-    if (!req.ok) {
-      dispatch(productsLoading(false));
-      dispatch(productsError());
-    } else {
-      dispatch(productsLoading(false));
-      req.json().then((res) => dispatch(getProducts(res)));
+  fetch(`https://panicky-swimsuit-tuna.cyclic.app/products`, options).then(
+    (req) => {
+      if (!req.ok) {
+        dispatch(productsLoading(false));
+        dispatch(productsError());
+      } else {
+        dispatch(productsLoading(false));
+        req.json().then((res) => dispatch(getProducts(res)));
+      }
     }
-  });
+  );
 };
 
 const updateProductAsync =
@@ -46,7 +48,10 @@ const updateProductAsync =
       redirect: "follow",
     };
 
-    fetch(`http://localhost:5000/products/${id}`, requestOptions)
+    fetch(
+      `https://panicky-swimsuit-tuna.cyclic.app/products/${id}`,
+      requestOptions
+    )
       .then((response) => {
         if (!response.ok) {
           dispatch(productsError());
@@ -67,7 +72,10 @@ const deleteProductAsync =
       }),
     };
 
-    fetch(`http://localhost:5000/products/${id}`, options).then((req) => {
+    fetch(
+      `https://panicky-swimsuit-tuna.cyclic.app/products/${id}`,
+      options
+    ).then((req) => {
       if (!req.ok) {
         dispatch(productsError());
       } else {
@@ -88,13 +96,15 @@ const addProductAsync =
       body: JSON.stringify(data),
     };
 
-    fetch(`http://localhost:5000/products`, options).then((req) => {
-      if (!req.ok) {
-        dispatch(productsError());
-      } else {
-        dispatch(addProduct(data));
+    fetch(`https://panicky-swimsuit-tuna.cyclic.app/products`, options).then(
+      (req) => {
+        if (!req.ok) {
+          dispatch(productsError());
+        } else {
+          dispatch(addProduct(data));
+        }
       }
-    });
+    );
   };
 
 enum ActionTypes {

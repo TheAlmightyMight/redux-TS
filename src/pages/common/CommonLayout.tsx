@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../types/redux-hooks";
 import { logout } from "../../redux/actionCreators/AuthActions";
 
 import AdminModal from "./AdminModal";
+import Modal from "./Modal";
 import AuthIcon from "./AuthIcon";
 import CartIcon from "./CartIcon";
 
@@ -74,6 +75,7 @@ function CommonLayout() {
           </li>
         </menu>
       </div>
+
       <div style={{ display: "flex", alignItems: "center" }}>
         {logged && !admin ? (
           <Link style={{ marginRight: "20px" }} to="/cart">
@@ -89,7 +91,7 @@ function CommonLayout() {
             Выйти
           </div>
         ) : (
-          <AuthIcon />
+          <AuthIcon setShowAuthModal={setShowAuthModal} />
         )}
 
         {logged && !admin ? (
@@ -102,12 +104,15 @@ function CommonLayout() {
         {admin ? (
           <span onClick={() => setShowAdminModal(true)}>Добавить товар</span>
         ) : null}
+
         {showAdminModal ? (
           <AdminModal
             shown={showAdminModal}
             setShowAdminModal={setShowAdminModal}
           />
         ) : null}
+
+        {showAuthModal ? <Modal setShowAuthModal={setShowAuthModal} /> : null}
       </div>
     </nav>
   );

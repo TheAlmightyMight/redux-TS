@@ -1,9 +1,13 @@
 import React from "react";
 
-const AuthIcon: React.FC = () => {
+interface Props {
+  setShowAuthModal: React.Dispatch<boolean>;
+}
+
+const AuthIcon: React.FC<Props> = ({ setShowAuthModal }) => {
   return (
     <svg
-      onClick={() => void 0}
+      onClick={() => setShowAuthModal(true)}
       style={{ cursor: "pointer" }}
       width="50px"
       viewBox="0 0 24 24"
