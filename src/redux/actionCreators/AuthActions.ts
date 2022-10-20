@@ -64,7 +64,7 @@ const loginAsync =
       body: JSON.stringify(credentials),
     };
 
-    fetch("https://panicky-swimsuit-tuna.cyclic.app", options)
+    fetch("https://panicky-swimsuit-tuna.cyclic.app/auth", options)
       .then((req) => {
         return req.text();
       })

@@ -3,17 +3,25 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import { rootReducer } from "./rootReducer";
 
-function configureStore() {
+export function configureStore(
+  preloadedState?: Partial<ReturnType<typeof rootReducer>>
+) {
   const store = createStore(
     rootReducer,
-    // preloadedState,
+    preloadedState,
     composeWithDevTools(applyMiddleware(thunkMiddleware))
   );
 
   return store;
 }
 
-export const store = configureStore();
+export const store = configureStore({
+  authReducer: {
+    isLogged: true,
+    isAdmin: false,
+    error: false,
+  },
+});
 
 export type RootState = ReturnType<typeof store.getState>;
 type AppDispatchType = typeof store.dispatch;

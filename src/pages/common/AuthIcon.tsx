@@ -7,6 +7,7 @@ interface Props {
 const AuthIcon: React.FC<Props> = ({ setShowAuthModal }) => {
   return (
     <svg
+      data-testid="svg"
       onClick={() => setShowAuthModal(true)}
       style={{ cursor: "pointer" }}
       width="50px"

@@ -17,7 +17,7 @@ function TableRow(props: CartItem) {
       <td>{title}</td>
       <td>{price}</td>
       <td style={{ textAlign: "center" }}>
-        <p>{quantity}</p>
+        <p data-testid="quantity">{quantity}</p>
         <button
           onClick={() =>
             dispatch(

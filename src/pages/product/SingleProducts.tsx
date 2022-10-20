@@ -9,7 +9,7 @@ import { addCartItemAsync } from "../../redux/actionCreators/CartActions";
 import { ProductItem } from "../../types/ProductItem";
 import { CartItem } from "../../types/CartItem";
 
-//crashes on page reload
+//crashes on interaction
 
 function SingleProducts() {
   const { id } = useParams();
