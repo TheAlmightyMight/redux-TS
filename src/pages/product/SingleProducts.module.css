@@ -2,11 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 30px 0;
 }
 
-.img {
+.imgContainer {
+  width: 320px;
+}
+
+.image {
+  width: 100%;
+}
+
+.innerContainer {
   text-align: center;
-  width: 600px;
   display: flex;
   justify-content: center;
   align-items: center;

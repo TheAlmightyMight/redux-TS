@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../types/redux-hooks";
 import { getProductsAsync } from "../../redux/actionCreators/ProductsActions";
 
+//@ts-ignore
+import styles from "./Home.module.css";
+
 //components
 import Product from "./Product";
 import AdminProduct from "./AdminProduct";
@@ -47,7 +50,9 @@ function Home() {
               </button>
             </section>
           ) : (
-            <ul>
+            <ul
+              className={`${styles.container} ${styles.ulSpecificWidthContainer}`}
+            >
               {admin
                 ? products.map((el: ProductItem) => {
                     return <AdminProduct key={el.id} {...el} />;

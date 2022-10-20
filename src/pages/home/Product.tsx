@@ -14,7 +14,6 @@ function Product(props: ProductItem) {
   const items = useAppSelector((state) => state.cartReducer.items);
   const [isAdded, setIsAdded] = useState(false);
 
-  //? fix
   useEffect(() => {
     setIsAdded((prev) => {
       if (
@@ -33,19 +32,19 @@ function Product(props: ProductItem) {
   const logged = useAppSelector((state) => state.authReducer.isLogged);
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.productContainer} ${styles.container}`}>
       <li>
-        <Link to={`/products/${props.id}`}>
+        <Link className={styles.Link} to={`/products/${props.id}`}>
           <h3>{props.title}</h3>
         </Link>
         <p>{props.description}</p>
         {logged ? (
           <>
             {isAdded ? (
-              <button>Товар уже в корзине</button>
+              <span style={{ color: "green" }}>Товар уже в корзине</span>
             ) : (
               <button
-                //change action typings
+                className={styles.Btn}
                 onClick={() =>
                   dispatch(addCartItemAsync({ ...rest, quantity: 1 }))
                 }
@@ -55,7 +54,7 @@ function Product(props: ProductItem) {
             )}
           </>
         ) : (
-          <button>Чтобы добавить залогиньтесь</button>
+          <span style={{ color: "red" }}>Чтобы добавить залогиньтесь</span>
         )}
       </li>
       <div></div>

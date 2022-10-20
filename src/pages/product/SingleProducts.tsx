@@ -8,9 +8,6 @@ import { addCartItemAsync } from "../../redux/actionCreators/CartActions";
 //types
 import { ProductItem } from "../../types/ProductItem";
 
-//TODO:
-// make so that if the item is already in the cart the user knows it
-
 function SingleProducts() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
@@ -22,10 +19,11 @@ function SingleProducts() {
   const itemToPassAsArgument = { ...rest, quantity: 1 };
   return (
     <div className={styles.container}>
-      <article className={styles.img}>
-        <h3>{item.title}</h3>
-        <figure>
+      <article className={styles.innerContainer}>
+        <h3 style={{ margin: "0", padding: "0" }}>{item.title}</h3>
+        <figure className={styles.imgContainer}>
           <img
+            className={styles.image}
             alt={`Товар ${item.id} картинка отвалилась`}
             src={item.picture}
           />
@@ -46,7 +44,7 @@ function SingleProducts() {
             Add
           </button>
         ) : (
-          <span>Залогиньтесь</span>
+          <span>Чтобы добавить, залогиньтесь пожалуйста</span>
         )}
       </article>
     </div>
