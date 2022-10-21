@@ -16,6 +16,7 @@ function SingleProducts() {
 
   const dispatch = useAppDispatch();
   const logged = useAppSelector((state) => state.authReducer.isLogged);
+  const admin = useAppSelector((state) => state.authReducer.isAdmin);
   const inCart = useAppSelector((state) => state.cartReducer.items);
 
   const [item, setItem] = useState<ProductItem>();
@@ -45,7 +46,7 @@ function SingleProducts() {
           />
           <figcaption>Описание:{item?.description}</figcaption>
         </figure>
-        {logged ? (
+        {logged || admin ? (
           inCart ? (
             <p>Товар в корзине</p>
           ) : (
@@ -62,11 +63,11 @@ function SingleProducts() {
                 dispatch(addCartItemAsync(clickHandler(item as ProductItem)))
               }
             >
-              Add
+              Добавить
             </button>
           )
         ) : (
-          <span>Чтобы добавить, залогиньтесь пожалуйста</span>
+          <p data-testid="par">Вы не можете добавлять товар в корзину</p>
         )}
       </article>
     </div>

@@ -102,7 +102,7 @@ describe("Common Layout / Nav Bar", () => {
     const amount = screen.getByTestId("cart-info").textContent as string;
     const matchArray = amount.match(/\d+/gi) as RegExpMatchArray;
 
-    expect(+matchArray[0]).toBe(2);
+    expect(+matchArray[0]).toBe(3);
     expect(+matchArray[1]).toBe(350);
   });
 });
