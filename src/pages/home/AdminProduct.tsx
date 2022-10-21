@@ -46,12 +46,14 @@ function AdminProduct(props: ProductItem) {
   return (
     <li style={{ display: "flex" }}>
       <input
+        data-testid="input"
         name="name"
         ref={nameInput}
         onChange={(e) => setName(e.target.value)}
         value={name}
       />
       <input
+        data-testid="input"
         name="quantity"
         ref={stockInput}
         onFocus={() => void 0}
@@ -59,6 +61,7 @@ function AdminProduct(props: ProductItem) {
         value={amount}
       />
       <textarea
+        data-testid="input"
         name="description"
         ref={descriptionTextArea}
         onChange={(e) => setText(e.target.value)}

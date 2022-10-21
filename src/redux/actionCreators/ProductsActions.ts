@@ -176,7 +176,7 @@ interface ErrorAction {
   type: ProductActionTypes.PRODUCTS_ERROR;
 }
 
-function productsError(): ErrorAction {
+function productsError(flag: boolean): ErrorAction {
   return {
     type: ProductActionTypes.PRODUCTS_ERROR,
   };
@@ -208,6 +208,13 @@ export {
   updateProductAsync,
   deleteProductAsync,
   addProductAsync,
+  addProduct,
+  deleteProduct,
+  updateProduct,
+  getProducts,
+  productsError,
+  productsLoading,
   ProductActionTypes,
 };
+
 export type { ProductAction };

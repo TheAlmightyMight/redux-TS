@@ -1,5 +1,3 @@
-import "@testing-library/jest-dom";
-
 //reducer
 import { authReducer } from "../authReducer";
 
