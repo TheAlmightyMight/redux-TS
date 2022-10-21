@@ -25,7 +25,12 @@ function CommonLayout() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showAdminModal, setShowAdminModal] = useState(false);
   const dispatch = useAppDispatch();
-  const amount = useAppSelector((state) => state.cartReducer.items.length);
+  const amount = useAppSelector((state) =>
+    state.cartReducer.items.reduce(
+      (prev, cur) => prev + Number(cur.quantity),
+      0
+    )
+  );
   const logged = useAppSelector((state) => state.authReducer.isLogged);
   const admin = useAppSelector((state) => state.authReducer.isAdmin);
   const price = useAppSelector((state) =>
