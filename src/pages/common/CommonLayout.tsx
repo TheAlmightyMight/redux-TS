@@ -96,10 +96,17 @@ function CommonLayout() {
         )}
 
         {logged && !admin ? (
-          <span style={{ margin: "0 20px 0 30px", width: "150px" }}>
-            {amount} Total amount <br />
-            {price} Total price
-          </span>
+          <h2
+            data-testid="cart-info"
+            style={{
+              margin: "0 20px 0 30px",
+              width: "150px",
+              fontSize: "18px",
+            }}
+          >
+            Total amount: {amount} <br />
+            Total price: {price}
+          </h2>
         ) : null}
 
         {admin ? (

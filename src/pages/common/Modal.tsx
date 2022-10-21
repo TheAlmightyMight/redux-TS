@@ -53,8 +53,10 @@ const Modal: React.FC<Props> = ({ setShowAuthModal }) => {
     <dialog open={true} style={CSS as React.CSSProperties}>
       {error ? (
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <h3>No such user</h3>
-          <button onClick={() => dispatch(authError(false))}>Try again</button>
+          <h3>Такого пользователя нет</h3>
+          <button onClick={() => dispatch(authError(false))}>
+            Попробовать заново
+          </button>
         </div>
       ) : (
         <>

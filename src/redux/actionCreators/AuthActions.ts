@@ -34,10 +34,10 @@ interface LoginAction {
   payload: boolean;
 }
 
-function login(flag: boolean): LoginAction {
+function login(isAdmin: boolean): LoginAction {
   return {
     type: AuthActionTypes.LOGIN,
-    payload: flag,
+    payload: isAdmin,
   };
 }
 

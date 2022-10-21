@@ -250,10 +250,15 @@ type CartAction =
 
 export {
   getCartItemsAsync,
+  addCartItem,
   deleteCartItemAsync,
   addCartItemAsync,
   updateCartItemAsync,
   deleteCartItemsAllAsync,
+  increaseCartItemAmount,
+  decreaseCartItemAmount,
+  cartItemsLoading,
+  deleteCartItem,
   CartActionTypes,
 };
 export type { CartAction };

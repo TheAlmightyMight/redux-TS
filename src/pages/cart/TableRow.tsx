@@ -12,8 +12,8 @@ function TableRow(props: CartItem) {
   const { id, title, price, quantity } = props;
   const dispatch = useAppDispatch();
   return (
-    <tr>
-      <td>{id}</td>
+    <tr data-testid="item">
+      <td data-testid="id">{id}</td>
       <td>{title}</td>
       <td>{price}</td>
       <td style={{ textAlign: "center" }}>

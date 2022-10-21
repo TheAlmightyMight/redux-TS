@@ -88,7 +88,7 @@ function AdminModal({ shown, setShowAdminModal }: Props) {
         <button style={Btn} onClick={(e) => handler(e)}>
           Создать
         </button>
-        <button style={Btn} onClick={() => void 0}>
+        <button style={Btn} onClick={() => setShowAdminModal(false)}>
           Закрыть
         </button>
       </div>

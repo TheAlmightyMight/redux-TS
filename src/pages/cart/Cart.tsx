@@ -12,11 +12,19 @@ import TableRow from "./TableRow";
 //types
 import { CartItem } from "../../types/CartItem";
 
-function Cart() {
+interface Props {
+  shouldRunUseEffectOnLoad?: boolean;
+}
+
+function Cart({ shouldRunUseEffectOnLoad = true }: Props) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getCartItemsAsync());
+    if (shouldRunUseEffectOnLoad) {
+      dispatch(getCartItemsAsync());
+    } else {
+      void 0;
+    }
   }, []);
 
   const items = useAppSelector((state) => state.cartReducer.items);

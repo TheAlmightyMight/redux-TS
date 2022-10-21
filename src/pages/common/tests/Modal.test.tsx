@@ -1,9 +1,11 @@
 import { screen, render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import userEvent from "@testing-library/user-event";
 
-import Modal from "../Modal";
+//actions
+import { authError } from "../../../redux/actionCreators/AuthActions";
+
 import CommonLayout from "../CommonLayout";
+import Modal from "../Modal";
 
 import { BrowserRouter } from "react-router-dom";
 
@@ -52,5 +54,49 @@ describe("Auth modal", () => {
     fireEvent.click(icon);
     fireEvent.click(screen.getByText("X"));
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  test("Closes when the after cancel button is pressed", () => {
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <CommonLayout />
+        </BrowserRouter>
+      </Provider>
+    );
+
+    const icon = screen.getByTestId("svg");
+    fireEvent.click(icon);
+    fireEvent.click(screen.getByText(/отмена/i));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  test("Displays error, if provided credentials are invalid", () => {
+    store.dispatch(authError(true));
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Modal setShowAuthModal={() => void 0} />
+        </BrowserRouter>
+      </Provider>
+    );
+
+    expect(screen.getByText("Такого пользователя нет")).toBeInTheDocument();
+    expect(screen.getByText("Попробовать заново")).toBeInTheDocument();
+  });
+
+  test("Displays form, if provided credentials are valid", () => {
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Modal setShowAuthModal={() => void 0} />
+        </BrowserRouter>
+      </Provider>
+    );
+
+    expect(
+      screen.queryByText("Такого пользователя нет")
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText("Попробовать заново")).not.toBeInTheDocument();
   });
 });
