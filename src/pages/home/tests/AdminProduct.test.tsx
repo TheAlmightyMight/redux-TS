@@ -1,4 +1,4 @@
-import { screen, render } from "@testing-library/react";
+import { screen, render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 
@@ -41,7 +41,7 @@ describe("Admin Product Page", () => {
     title: "laptop",
     price: 442,
   };
-  test("Renders inputs as intended", () => {
+  test("Renders name input", async () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
@@ -50,13 +50,42 @@ describe("Admin Product Page", () => {
       </BrowserRouter>
     );
     const arr = screen.getAllByTestId("input");
-    console.log(arr);
-    await arr.forEach(async (el) => {
-      await userEvent.type(el, "Lorem Ipsum");
+    fireEvent.change(arr[0], {
+      target: { value: "chuck" },
     });
 
-    arr.forEach((el) => {
-      expect(el).toHaveValue("Lorem Ipsum");
+    expect(arr[0]).toHaveValue("chuck");
+  });
+
+  test("Renders description input", async () => {
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <AdminProduct {...product} />
+        </Provider>
+      </BrowserRouter>
+    );
+    const arr = screen.getAllByTestId("input");
+    fireEvent.change(arr[1], {
+      target: { value: 24 },
     });
+
+    expect(arr[1]).toHaveValue(String(24));
+  });
+
+  test("Renders stock input", async () => {
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <AdminProduct {...product} />
+        </Provider>
+      </BrowserRouter>
+    );
+    const arr = screen.getAllByTestId("input");
+    fireEvent.change(arr[2], {
+      target: { value: "chuck" },
+    });
+
+    expect(arr[2]).toHaveValue("chuck");
   });
 });
