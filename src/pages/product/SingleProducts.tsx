@@ -16,22 +16,22 @@ function SingleProducts() {
 
   const dispatch = useAppDispatch();
   const logged = useAppSelector((state) => state.authReducer.isLogged);
+  const inCart = useAppSelector((state) => state.cartReducer.items);
 
   const [item, setItem] = useState<ProductItem>();
-  const [itemProps, setItemProps] = useState<Omit<CartItem, "id">>();
 
   useEffect(() => {
     fetch(`https://panicky-swimsuit-tuna.cyclic.app/products/${id}`)
       .then((res) => res.json())
-      .then((res) => setItem(res))
-      .then(() => {
-        const { id: _, ...rest } = item as ProductItem;
-        const itemToPassAsArgument = { ...rest, quantity: 1 };
-        console.log(item);
+      .then((res) => setItem(res));
+  }, [id]);
 
-        setItemProps(itemToPassAsArgument);
-      });
-  }, []);
+  const clickHandler = (
+    args: ProductItem
+  ): { quantity: number } & Omit<CartItem, "id"> => {
+    const { id, ...rest } = args;
+    return { ...rest, quantity: 1 };
+  };
 
   return (
     <div className={styles.container}>
@@ -46,21 +46,25 @@ function SingleProducts() {
           <figcaption>Описание:{item?.description}</figcaption>
         </figure>
         {logged ? (
-          <button
-            style={{
-              width: "150px",
-              height: "50px",
-              background: "green",
-              border: "none",
-              borderRadius: "15px",
-              cursor: "pointer",
-            }}
-            onClick={() =>
-              dispatch(addCartItemAsync(itemProps as Omit<CartItem, "id">))
-            }
-          >
-            Add
-          </button>
+          inCart ? (
+            <p>Товар в корзине</p>
+          ) : (
+            <button
+              style={{
+                width: "150px",
+                height: "50px",
+                background: "green",
+                border: "none",
+                borderRadius: "15px",
+                cursor: "pointer",
+              }}
+              onClick={() =>
+                dispatch(addCartItemAsync(clickHandler(item as ProductItem)))
+              }
+            >
+              Add
+            </button>
+          )
         ) : (
           <span>Чтобы добавить, залогиньтесь пожалуйста</span>
         )}

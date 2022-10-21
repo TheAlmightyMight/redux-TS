@@ -31,7 +31,7 @@ function Cart({ shouldRunUseEffectOnLoad = true }: Props) {
   const loading = useAppSelector((state) => state.cartReducer.loading);
   return (
     <div className={styles.container}>
-      <table align="center" cellPadding={"10px"}>
+      <table className={styles.table} align="center" cellPadding={"10px"}>
         <thead>
           <tr>
             <th>Id</th>
