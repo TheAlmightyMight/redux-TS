@@ -22,7 +22,7 @@ const getProductsAsync = () => (dispatch: Dispatch<ProductAction>) => {
     (req) => {
       if (!req.ok) {
         dispatch(productsLoading(false));
-        dispatch(productsError());
+        dispatch(productsError(true));
       } else {
         dispatch(productsLoading(false));
         req.json().then((res) => dispatch(getProducts(res)));
@@ -54,7 +54,7 @@ const updateProductAsync =
     )
       .then((response) => {
         if (!response.ok) {
-          dispatch(productsError());
+          dispatch(productsError(true));
         } else {
           dispatch(updateProduct(id, data));
         }
@@ -77,7 +77,7 @@ const deleteProductAsync =
       options
     ).then((req) => {
       if (!req.ok) {
-        dispatch(productsError());
+        dispatch(productsError(true));
       } else {
         dispatch(deleteProduct(id));
       }
@@ -99,7 +99,7 @@ const addProductAsync =
     fetch(`https://panicky-swimsuit-tuna.cyclic.app/products`, options).then(
       (req) => {
         if (!req.ok) {
-          dispatch(productsError());
+          dispatch(productsError(true));
         } else {
           dispatch(addProduct(data));
         }
